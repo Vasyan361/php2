@@ -20,13 +20,15 @@ abstract class Model
 
     public static function fyidById(int $id)
     {
-        foreach (Article::findAll() as $value){
-            if ($value->id == $id){
-                return $value;
-            }
+        $db = new Db();
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
+        $data = $db->query($sql, [':id' => $id], static::class);
+        if (!empty($data)){
+            return $data[0];
+        } else {
+            return false;
         }
-
-        return false;
+        
     }
 
 }
