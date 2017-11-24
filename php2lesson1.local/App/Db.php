@@ -15,12 +15,9 @@ class Db
     {
 
         $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute($params);
-        if ($res){
-            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
-        } else{
-            return false;
-        }
+        $sth->execute($params);
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+
 
     }
 

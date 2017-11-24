@@ -23,8 +23,8 @@ require __DIR__ . '/autoload.php';?>
         <?php
             if (isset($_GET['id']) && false != \App\Models\Article::fyidById($_GET['id'])){
                 $data = \App\Models\Article::fyidById($_GET['id']); ?>
-                <h1><?php echo $data[0]->title; ?></h1>
-                <article><?php echo $data[0]->lead; ?></article>
+                <h1><?php echo $data->title; ?></h1>
+                <article><?php echo $data->lead; ?></article>
             <?php  } else{
                 echo 'Такой новости не существует';
             }

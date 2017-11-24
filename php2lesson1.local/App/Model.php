@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Article;
+
 abstract class Model
 {
 
@@ -18,14 +20,13 @@ abstract class Model
 
     public static function fyidById(int $id)
     {
-        $db = new Db();
-        $sql = 'SELECT * FROM ' . static::$table . ' WHERE id = :id';
-        $data = $db->query($sql, [':id' => $id], static::class);
-        if (!empty($data)){
-            return $data;
-        } else{
-            return false;
+        foreach (Article::findAll() as $value){
+            if ($value->id == $id){
+                return $value;
+            }
         }
+
+        return false;
     }
 
 }
