@@ -13,7 +13,7 @@ $article->save();*/
 /*$article = \App\Models\Article::fyidById(8); //тест удаления статьи
 $article->delete();*/
 
-$config = \App\Config::getConfig(); //
+$config = \App\Config::getConfig(); // тест синглтона
 var_dump($config->data);
 
 $data = \App\Config::getConfig();
