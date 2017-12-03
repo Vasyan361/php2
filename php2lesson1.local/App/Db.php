@@ -13,12 +13,9 @@ class Db
 
     public function query(string $sql, array $params = [], $class = \stdClass::class)
     {
-
         $sth = $this->dbh->prepare($sql);
         $sth->execute($params);
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
-
-
     }
 
     public function  execute(string $query, array $params=[])

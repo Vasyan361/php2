@@ -12,7 +12,7 @@
 <body>
 
 <?php
-foreach ($news as $article){?>
+foreach ($news as $article) { ?>
 
     <a href="<?php echo '/article.php?id=' . $article->id; ?>">
 

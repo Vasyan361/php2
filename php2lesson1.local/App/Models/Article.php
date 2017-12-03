@@ -19,9 +19,10 @@ class Article extends Model
         $db = new Db();
         $sql = 'SELECT * FROM news ORDER BY id DESC LIMIT 3';
         $data = $db->query($sql, [], self::class);
-        if (!empty($data)){
+
+        if (!empty($data)) {
             return $data;
-        } else{
+        } else {
             return false;
         }
     }
