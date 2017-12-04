@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__ . '/autoload.php';
+require __DIR__ . '/../autoload.php';
 
-if (!empty($_GET['id'])) {
+if (!empty($_GET['id']) ) {
     $article = \App\Models\Article::fyidById($_GET['id']);
 
     if (empty($article)) {
@@ -10,12 +10,8 @@ if (!empty($_GET['id'])) {
         exit();
     }
 
-    include __DIR__ . '/App/Templates/article.php';
+    include __DIR__ . '/Templates/edit.php';
 
 } else {
     http_response_code(404);
 }
-
-
-
-

@@ -2,14 +2,14 @@
 
 require __DIR__ . '/autoload.php';
 
-if (isset($_POST['id']) && false != \App\Models\Article::fyidById($_POST['id'])){
-    $article = \App\Models\Article::fyidById($_POST['id']);
-    $article->delete();
-    header('Location: /admin.php');
-} else{
-    echo 'ошибка';
-}?>
+if (!empty($_GET['id'])) {
+    $article = \App\Models\Article::fyidById($_GET['id']);
 
-<a href="/admin.php">
-    <button>Назад</button>
-</a>
+    if (empty($article)) {
+        header('Location: /Admin/');
+    }
+
+    $article->delete();
+}
+
+header('Location: /Admin/');

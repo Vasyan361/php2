@@ -18,21 +18,15 @@ class Config
 
     protected function __construct()
     {
-        $config = file(__DIR__ . '/../config.txt', FILE_IGNORE_NEW_LINES);
-        $this->data =[];
-        foreach ($config as $value){
-            $foo = explode('=', $value);
-            $this->data[$foo[0]] = $foo[1];
-            $foo = [];
-        }
-
+        $this->data = parse_ini_file(__DIR__ . '/../config.ini');
     }
 
     public static function getConfig()
     {
-        if (null == self::$config){
+        if (null == self::$config) {
             self::$config = new self();
         }
+
         return self::$config;
     }
 

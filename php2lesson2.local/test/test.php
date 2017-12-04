@@ -14,7 +14,7 @@ $article->save();*/
 $article->delete();*/
 
 $config = \App\Config::getConfig(); // тест синглтона
-var_dump($config->data);
+var_dump($config);
 
 $data = \App\Config::getConfig();
 var_dump($data);
