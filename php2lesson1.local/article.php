@@ -2,10 +2,16 @@
 
 require __DIR__ . '/autoload.php';
 
-if (isset($_GET['id']) && false != \App\Models\Article::fyidById($_GET['id'])) {
+if (!empty($_GET['id'])) {
     $article = \App\Models\Article::fyidById($_GET['id']);
+
+    if (empty($article)) {
+        http_response_code(404);
+    }
+
     include __DIR__ . '/App/Templates/article.php';
-} else {
+
+}  else {
     http_response_code(404);
 };
 
