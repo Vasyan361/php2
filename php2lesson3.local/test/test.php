@@ -14,17 +14,17 @@ $article->save();*/
 $article->delete();*/
 
 /*$config = \App\Config::getConfig(); // тест синглтона
-var_dump($config->data);
+var_dump($config);
 
 $data = \App\Config::getConfig();
 var_dump($data);*/
 
-/*$view = new \App\View(); //тест интерфейса Countable
+$view = new \App\View(); //тест интерфейса Countable
 $view->news = \App\Models\Article::lastNews();
 $view->foo = 42;
 $view->bar = 24;
 
-echo count($view);*/
+echo count($view);
 
 $it = new \App\View(); //тест интерфейса Iterator
 

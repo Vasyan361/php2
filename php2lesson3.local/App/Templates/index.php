@@ -18,7 +18,15 @@
 
                 <h1><?php echo $article->title; ?></h1>
                 <article><?php echo $article->lead; ?></article>
-                <em><?php echo $article->author->author; ?></em>
+                <em>
+                    <?php
+                    if (!empty($article->author->author)):
+                        echo $article->author->author;
+                    else:
+                        echo 'Нет автора';
+                    endif;
+                    ?>
+                </em>
 
             </a>
 

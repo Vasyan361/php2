@@ -2,10 +2,17 @@
 
 require __DIR__ . '/autoload.php';
 
- if (isset($_GET['id']) && false != \App\Models\Article::fyidById($_GET['id'])){
+ if (!empty($_GET['id'])) {
      $view = new \App\View();
      $view->article = \App\Models\Article::fyidById($_GET['id']);
+
+     if(empty($view->article)) {
+         http_response_code(404);
+         exit();
+     }
+
      $view->display(__DIR__ . '/App/Templates/article.php');
- } else{
+
+ } else {
      http_response_code(404);
  }

@@ -10,6 +10,7 @@ use App\Model;
  *
  * @property $author
  */
+
 class Article extends Model
 {
 
@@ -22,17 +23,11 @@ class Article extends Model
 
     public function __get($name)
     {
-        if ('author' ==  $name && isset($this->author_id)){
+        if ('author' ==  $name && isset($this->author_id)) {
             return Author::fyidById($this->author_id);
-        } else{
+        } else {
             return null;
         }
-    }
-
-    public function newArticle(string $lead, string $title)
-    {
-        $this->lead = $lead;
-        $this->title = $title;
     }
 
     public static function lastNews()
@@ -40,9 +35,10 @@ class Article extends Model
         $db = new Db();
         $sql = 'SELECT * FROM news ORDER BY id DESC LIMIT 3';
         $data = $db->query($sql, [], self::class);
-        if (!empty($data)){
+
+        if (!empty($data)) {
             return $data;
-        } else{
+        } else {
             return false;
         }
     }

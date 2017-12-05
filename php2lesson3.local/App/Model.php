@@ -23,12 +23,12 @@ abstract class Model
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
         $data = $db->query($sql, [':id' => $id], static::class);
-        if (!empty($data)){
+
+        if (!empty($data)) {
             return $data[0];
         } else {
             return false;
         }
-        
     }
 
     public function update()
@@ -36,9 +36,10 @@ abstract class Model
         $fields = get_object_vars($this);
         $sets = [];
         $data = [];
-        foreach ($fields as $name => $value){
+
+        foreach ($fields as $name => $value) {
             $data[':' . $name] = $value;
-            if ('id' == $name){
+            if ('id' == $name) {
                 continue;
             }
             $sets[] = $name . '=:' . $name;
@@ -59,11 +60,13 @@ abstract class Model
         $sets = [];
         $key = [];
         $data = [];
-        foreach ($fields as $name => $value){
+
+        foreach ($fields as $name => $value) {
             $data[':' . $name] = $value;
             $sets[] =$name;
             $key[] = ':' . $name;
         }
+
         $sql = '
         INSERT INTO ' . static::$table . ' (' . implode(', ', $sets) . '
         ) VALUES (' . implode(', ', $key) . ')';
@@ -74,19 +77,19 @@ abstract class Model
 
     public function save()
     {
-        if (null == $this->id){
+        if (null == $this->id) {
             $this->insert();
-        } else{
+        } else {
             $this->update();
         }
     }
 
     public function delete()
     {
-        $sql = 'DELETE FROM ' . static::$table . ' WHERE id=' . $this->id;
+        $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
 
         $db = new Db();
-        $db->execute($sql);
+        $db->execute($sql, [':id' => $this->id]);
     }
 
 

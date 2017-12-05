@@ -8,7 +8,9 @@ namespace App;
  * @property $id
  * @property $news
  * @property $article
+ * @property $items
  */
+
 class View
     implements \Countable, \Iterator
 {
@@ -25,14 +27,15 @@ class View
     public function render($temlate)
     {
         ob_start();
-        foreach ($this->data as $key => $value){
-            $$key = $value;
+        if (!empty($this->data)) {
+            foreach ($this->data as $key => $value) {
+                $$key = $value;
+            }
         }
+
         include $temlate;
         $contents = ob_get_contents();
         ob_end_clean();
-        //var_dump($contents);
-        //var_dump($this->data);
 
         return $contents;
     }
@@ -44,23 +47,28 @@ class View
 
     protected $position = 0;
 
-    public function rewind(){
+    public function rewind()
+    {
         return $this->position = 0;
     }
 
-    public function current(){
+    public function current()
+    {
         return $this->data[$this->position];
     }
 
-    public function key(){
+    public function key()
+    {
         return $this->position;
     }
 
-    public function next(){
+    public function next()
+    {
         ++$this->position;
     }
 
-    public function valid(){
+    public function valid()
+    {
         return isset($this->data[$this->position]);
     }
 
