@@ -12,22 +12,22 @@ namespace App;
 class Config
 {
 
-    protected static $config = null;
+    protected static $instance = null;
 
     public $data;
 
     protected function __construct()
     {
-        $this->data = parse_ini_file(__DIR__ . '/../config.ini');
+        $this->data = include __DIR__ . '/../config.php';
     }
 
-    public static function getConfig()
+    public static function getInstance()
     {
-        if (null == self::$config) {
-            self::$config = new self();
+        if (null == self::$instance) {
+            self::$instance = new self();
         }
 
-        return self::$config;
+        return self::$instance;
     }
 
 }

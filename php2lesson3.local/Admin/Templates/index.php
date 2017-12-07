@@ -12,7 +12,7 @@
     <body>
 
         <h2>
-            <a href="/Admin/Templates/create.php">Создать новость</a>
+            <a href="/Admin/create.php">Создать новость</a>
         </h2>
 
         <h1>Список новостей</h1>
@@ -32,7 +32,7 @@
                     <a href="/Admin/edit.php?id=<?php echo $item->id; ?>">Редактировать</a>
                 </td>
                 <td>
-                    <a href="/delete.php?id=<?php echo $item->id; ?>">Удалить</a></td>
+                    <a href="/Admin/delete.php?id=<?php echo $item->id; ?>">Удалить</a>
                 </td>
             </tr>
             <?php }; ?>
