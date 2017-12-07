@@ -8,8 +8,8 @@ class Db
 
     public function __construct()
     {
-        $db = Config::getConfig();
-        $config = $db->data;
+        $instanse = Config::getInstanse();
+        $config = $instanse->data;
 
         $dsn = $config['db'] . ':host=' . $config['host'] . ';dbname=' . $config['dbname'];
         $this->dbh = new \PDO($dsn, $config['user'], $config['password']);
@@ -26,6 +26,11 @@ class Db
     {
         $sth = $this->dbh->prepare($query);
         return $sth->execute($params);
+    }
+
+    public function lastId()
+    {
+        return $this->dbh->lastInsertId();
     }
 
 }

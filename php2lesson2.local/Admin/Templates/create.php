@@ -14,7 +14,7 @@
 
     <h1>Создать Новость</h1>
 
-    <form action="/insert.php" method="post">
+    <form action="/Admin/create.php" method="post">
 
         <input type="text" name="title" placeholder="Введите заголовок" size="50">
         <br>

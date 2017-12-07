@@ -18,7 +18,7 @@ abstract class Model
         return $db->query($sql, [], static::class);
     }
 
-    public static function fyidById(int $id)
+    public static function fyindById(int $id)
     {
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
@@ -73,6 +73,7 @@ abstract class Model
 
         $db = new Db();
         $db->execute($sql, $data);
+        $this->id = $db->lastId();
     }
 
     public function save()

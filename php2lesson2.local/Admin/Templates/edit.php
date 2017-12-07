@@ -14,7 +14,7 @@
 
         <h1>Редактирование новости</h1>
 
-        <form action="/update.php" method="post">
+        <form action="/Admin/update.php" method="post">
 
             <input type="hidden" name="id" value="<?php echo $article->id; ?>" >
             <br>
