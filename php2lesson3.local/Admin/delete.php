@@ -9,6 +9,7 @@ if (!empty($_GET['id'])) {
         header('Location: /Admin/');
     }
 
+
     $article->delete();
 
 }

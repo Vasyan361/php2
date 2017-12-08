@@ -9,7 +9,7 @@ class Db
     public function __construct()
     {
 
-        $db = Config::getConfig();
+        $db = Config::getInstance();
         $config = $db->data;
 
         $dsn = $config['db'] . ':host=' . $config['host'] . ';dbname=' . $config['dbname'];

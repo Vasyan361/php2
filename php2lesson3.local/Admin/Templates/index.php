@@ -24,7 +24,7 @@
                 <th></th>
                 <th></th>
             </tr>
-            <?php foreach ($items as $item) { ?>
+            <?php foreach ($items as $item): ?>
             <tr>
                 <td><?php echo $item->id; ?></td>
                 <td><?php echo $item->title; ?></td>
@@ -35,7 +35,7 @@
                     <a href="/Admin/delete.php?id=<?php echo $item->id; ?>">Удалить</a>
                 </td>
             </tr>
-            <?php }; ?>
+            <?php endforeach; ?>
         </table>
 
     </body>
