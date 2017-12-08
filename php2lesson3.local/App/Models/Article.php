@@ -24,7 +24,7 @@ class Article extends Model
     public function __get($name)
     {
         if ('author' ==  $name && isset($this->author_id)) {
-            return Author::fyindById($this->author_id);
+            return Author::findById($this->author_id);
         } else {
             return null;
         }
