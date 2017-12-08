@@ -9,8 +9,8 @@ class Db
     public function __construct()
     {
 
-        $db = Config::getInstance();
-        $config = $db->data;
+        $instance = Config::getInstance();
+        $config = $instance->data;
 
         $dsn = $config['db'] . ':host=' . $config['host'] . ';dbname=' . $config['dbname'];
         $this->dbh = new \PDO($dsn, $config['user'], $config['password']);
