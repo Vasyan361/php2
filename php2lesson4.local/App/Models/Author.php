@@ -7,8 +7,8 @@ use App\Model;
 class Author extends Model
 {
 
-    protected static $table = 'author';
+    protected static $table = 'authors';
 
-    public $author;
+    public $fullname;
 
 }
