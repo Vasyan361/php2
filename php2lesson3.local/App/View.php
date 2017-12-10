@@ -15,8 +15,6 @@ class View
     implements \Countable, \Iterator
 {
 
-    protected $data; //= ['a', 'b', 'c']; Изпользовал для теста интерфейса Iterator
-
     use Magic;
 
     public function display($template)

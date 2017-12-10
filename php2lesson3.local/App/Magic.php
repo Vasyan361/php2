@@ -5,6 +5,8 @@ namespace App;
 trait Magic
 {
 
+    protected $data; //= ['a', 'b', 'c']; Изпользовал для теста интерфейса Iterator
+
     public function __set($key, $value)
     {
         $this->data[$key] = $value;
