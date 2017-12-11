@@ -6,7 +6,7 @@ $url = $_SERVER['REQUEST_URI'];
 $urlParts = explode('/', $url);
 
 $controller = $urlParts[1] ?: 'Index';
-$action = $urlParts[2] ?: 'Default';
+$action = (empty($urlParts[2])) ? 'Default' : $urlParts[2];
 
 $class = '\\App\\Controllers\\' . $controller;
 $ctrl = new $class;
