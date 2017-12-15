@@ -96,15 +96,19 @@ abstract class Model
 
     public  function fill(array $data)
     {
-        $errors = $this->validation($data);
-
-        if (!$errors->empty()) { //если есть исключения то выбрасываем их
-            throw $errors;
+        if (isset($data['id']) && '' == $data['id']) {
+            unset($data['id']);
         }
+
+        $errors = $this->validation($data);
 
         foreach ($data as $key => $value) {
             $this->$key = $value;
         } // заполняем свойства значениями
+
+        if (!$errors->empty()) { //если есть исключения то выбрасываем их
+            throw $errors;
+        }
     }
 
 

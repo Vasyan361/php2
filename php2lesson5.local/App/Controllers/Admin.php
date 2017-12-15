@@ -19,56 +19,55 @@ class Admin
 
     protected function actionEdit()
     {
-        if (!empty($_GET['id'])) {
-            $this->view->article = Article::findById($_GET['id']);
-            $this->view->display(__DIR__ . '/../../Admin/Templates/Edit.php');
+        if (isset($_GET['id']) && '' != $_GET['id']) {
+            if (is_numeric($_GET['id'])) {
+                $this->view->article = Article::findById($_GET['id']);
+                $this->view->display(__DIR__ . '/../../Admin/Templates/Edit.php');
 
-        } else{
-            throw new Http404Exception('Такая страниц не найдена');
-        }
-    }
-
-    protected function actionCreate()
-    {
-        if (isset($_POST['title']) && isset($_POST['lead'])) {
-
-            $article = new Article();
-
-            try {
-                $article->fill($_POST);
-                $article->save();
-                header('Location: /Admin');
-
-            } catch (ErrorsExceptions $errors){
-                $this->view->article = $article;
-                $this->view->errors = $errors->getAll();
-                $this->view->display(__DIR__ . '/../../Admin/Templates/Create.php');
+            } else {
+                throw new Http404Exception('Такая страниц не найдена');
             }
-
         } else {
-            $this->view->display(__DIR__ . '/../../Admin/Templates/Create.php');
+            $this->view->display(__DIR__ . '/../../Admin/Templates/Edit.php');
         }
     }
 
-    protected function actionUpdate()
+    protected function actionSave()
     {
         if (isset($_POST['id']) && isset($_POST['title']) && isset($_POST['lead'])) {
+            if (is_numeric($_POST['id'])) {
+                $article = Article::findById($_POST['id']);
 
-            $article = Article::findById($_POST['id']);
+                try {
+                    $article->fill($_POST);
+                    $article->save();
+                    header('Location: /Admin');
 
-            try {
-                $article->fill($_POST);
-                $article->save();
-                header('Location: /Admin');
+                } catch (ErrorsExceptions $errors){
+                    $this->view->article = $article;
+                    $this->view->errors = $errors->getAll();
+                    $this->view->display(__DIR__ . '/../../Admin/Templates/Edit.php');
+                }
 
-            } catch (ErrorsExceptions $errors){
-                $this->view->article = $article;
-                $this->view->errors = $errors->getAll();
-                $this->view->display(__DIR__ . '/../../Admin/Templates/Edit.php');
+            } elseif ('' == $_POST['id']) {
+                $article = new Article();
+
+
+                try {
+                    $article->fill($_POST);
+                    $article->save();
+                    header('Location: /Admin');
+
+                } catch (ErrorsExceptions $errors){
+                    $this->view->article = $article;
+                    $this->view->errors = $errors->getAll();
+                    $this->view->display(__DIR__ . '/../../Admin/Templates/Edit.php');
+                }
+
             }
-
+        } else {
+            header('Location: /Admin');
         }
-
     }
 
     protected function actionDelete()

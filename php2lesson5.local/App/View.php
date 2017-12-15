@@ -42,32 +42,29 @@ class View
         return count($this->data);
     }
 
-    protected $position = 0;
-
     public function rewind()
     {
-        return $this->position = 0;
+        reset($this->data);
     }
 
     public function current()
     {
-        return $this->data[$this->position];
+        return current($this->data);
     }
 
     public function key()
     {
-        return $this->position;
+        return key($this->data);
     }
 
     public function next()
     {
-        ++$this->position;
+        next($this->data);
     }
 
     public function valid()
     {
-        return isset($this->data[$this->position]);
+        return null !== key($this->data);
     }
-
 
 }

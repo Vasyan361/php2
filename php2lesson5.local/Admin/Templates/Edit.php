@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+
     <head>
 
         <meta charset="UTF-8">
@@ -12,27 +13,41 @@
 
     <body>
 
-        <h1>Редактирование новости</h1>
-
+        <h1><?php if (isset($article)):
+                echo 'Редактирование новости';
+            else:
+                echo 'Создать Новость';
+            endif; ?></h1>
         <?php
         if (!empty($errors)):
             foreach ($errors as $error): ?>
                 <h3>Ошибка:</h3>
                 <?php echo $error->getMessage(); ?>
 
-            <?php
+                <?php
             endforeach;
         endif; ?>
 
-        <form action="/Admin/Update" method="post">
+        <form action="/Admin/Save" method="post">
 
-            <input type="hidden" name="id" value="<?php echo $article->id; ?>" >
+            <input type="hidden" name="id" value="<?php
+            if (isset($article->id)):
+                echo $article->id;
+            endif; ?>" >
             <br>
+
             <h3>Заголовок новости</h3>
-            <input type="text" name="title" size="50" value="<?php echo $article->title; ?>">
+            <input type="text" name="title" size="50" placeholder="Введите заголовок" value="<?php
+            if (isset($article->title)):
+                echo $article->title;
+            endif; ?>">
             <br>
+
             <h3>Текст новости</h3>
-            <textarea name="lead" cols="50" rows="20"><?php echo $article->lead; ?></textarea>
+            <textarea name="lead" placeholder="Введите новость" cols="50" rows="20"><?php
+                if (isset($article->lead)):
+                    echo $article->lead;
+                endif; ?></textarea>
             <br>
             <input type="submit">
 
