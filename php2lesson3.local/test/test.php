@@ -23,12 +23,11 @@ $view = new \App\View(); //тест интерфейса Countable
 $view->news = \App\Models\Article::lastNews();
 $view->foo = 42;
 $view->bar = 24;
+$view->baz = 21;
 
 echo count($view);
 
-$it = new \App\View(); //тест интерфейса Iterator
-
-foreach ($it as $key => $value){
+foreach ($view as $key => $value){ //тест интерфейса Iterator
     var_dump($key, $value);
     echo PHP_EOL;
 }

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+
     <head>
 
         <meta charset="UTF-8">
@@ -12,19 +13,32 @@
 
     <body>
 
-        <h1>Редактирование новости</h1>
+        <h1><?php if (isset($article)):
+                echo 'Редактирование новости';
+            else:
+                echo 'Создать Новость';
+            endif; ?></h1>
 
-        <form action="/Admin/update.php" method="post">
+        <form action="/Admin/save.php" method="post">
 
-            <input type="hidden" name="id" value="<?php echo $article->id; ?>" >
+            <input type="hidden" name="id" value="<?php
+            if (isset($article->id)):
+                echo $article->id;
+            endif; ?>" >
             <br>
+
             <h3>Заголовок новости</h3>
-            <input type="text" name="title" value="<?php echo $article->title; ?>" size="50">
+            <input type="text" name="title" size="50" placeholder="Введите заголовок" value="<?php
+            if (isset($article->title)):
+                echo $article->title;
+            endif; ?>">
             <br>
+
             <h3>Текст новости</h3>
-            <textarea name="lead" cols="50" rows="20">
-                <?php echo $article->lead; ?>
-            </textarea>
+            <textarea name="lead" placeholder="Введите новость" cols="50" rows="20"><?php
+                if (isset($article->lead)):
+                    echo $article->lead;
+                endif; ?></textarea>
             <br>
             <input type="submit">
 

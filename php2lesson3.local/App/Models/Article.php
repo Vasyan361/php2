@@ -21,9 +21,9 @@ class Article extends Model
     public $lead;
     public $author_id;
 
-    public function __get($fullname)
+    public function __get($author)
     {
-        if ('author' ==  $fullname && isset($this->author_id)) {
+        if ('author' ==  $author && isset($this->author_id)) {
             return Author::findById($this->author_id);
         } else {
             return null;

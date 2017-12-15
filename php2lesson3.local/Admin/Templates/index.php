@@ -12,7 +12,7 @@
     <body>
 
         <h2>
-            <a href="/Admin/create.php">Создать новость</a>
+            <a href="/Admin/edit.php">Создать новость</a>
         </h2>
 
         <h1>Список новостей</h1>

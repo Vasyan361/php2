@@ -2,17 +2,24 @@
 
 require __DIR__ . '/../autoload.php';
 
-if (!empty($_GET['id']) ) {
-    $view =new \App\View();
-    $view->article = \App\Models\Article::findById($_GET['id']);
+if (isset($_GET['id']) && '' != $_GET['id']) {
+    if (is_numeric($_GET['id'])) {
+        $article = \App\Models\Article::findById($_GET['id']);
 
-    if (empty($view->article)) {
+        if (empty($article)) {
+            http_response_code(404);
+            exit();
+        }
+
+        $view =new \App\View();
+        $view->article = $article;
+        $view->display(__DIR__ . '/Templates/edit.php');
+
+    } else {
         http_response_code(404);
         exit();
     }
-
-    $view->display(__DIR__ . '/Templates/edit.php');
-
 } else {
-    http_response_code(404);
+    $view = new \App\View();
+    $view->display(__DIR__ . '/Templates/edit.php');
 }
