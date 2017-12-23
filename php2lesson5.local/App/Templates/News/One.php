@@ -19,7 +19,7 @@
         <article><?php echo $article->lead; ?></article>
         <em>
             <?php
-            if (!empty($article->author->fullname)):
+            if (!is_null($article->author)):
                 echo $article->author->fullname;
             else:
                 echo 'Нет автора';

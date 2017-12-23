@@ -13,10 +13,10 @@ try {
     $ctrl = new $class;
     $ctrl->action($action);
 
-} catch (\App\Exceptions\DbExceptions $ex) {
+} catch (\App\Exceptions\DbException $ex) {
     \App\Logger::writeLog($ex);
-    $view = new \App\View();
-    $view->display(__DIR__ . '/App/Templates/Errors/Default.php');
+    $ctrl = new \App\Controllers\Errors();
+    $ctrl->action('Default');
 
 } catch (\App\Exceptions\Http404Exception $ex) {
     \App\Logger::writeLog($ex);

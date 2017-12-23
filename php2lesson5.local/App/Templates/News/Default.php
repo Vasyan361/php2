@@ -20,8 +20,8 @@
                 <article><?php echo $article->lead; ?></article>
                 <em>
                     <?php
-                    if (!empty($article->author->fullname)):
-                        echo $article->author->fullname;
+                    if (!is_null($article->author)):
+                        echo $article->author->fullName;
                     else:
                         echo 'Нет автора';
                     endif;

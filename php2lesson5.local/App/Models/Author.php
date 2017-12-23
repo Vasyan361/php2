@@ -10,7 +10,7 @@ class Author extends Model
 
     protected static $table = 'authors';
 
-    public $fullname;
+    public $fullName;
 
 
     public function validation(array $data)

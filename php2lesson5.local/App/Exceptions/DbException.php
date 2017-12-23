@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class DbExceptions
+class DbException
     extends \Exception
 {
 

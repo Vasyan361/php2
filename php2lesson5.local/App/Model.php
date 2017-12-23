@@ -102,13 +102,13 @@ abstract class Model
 
         $errors = $this->validation($data);
 
-        foreach ($data as $key => $value) {
-            $this->$key = $value;
-        } // заполняем свойства значениями
-
         if (!$errors->empty()) { //если есть исключения то выбрасываем их
             throw $errors;
         }
+
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        } // заполняем свойства значениями
     }
 
 

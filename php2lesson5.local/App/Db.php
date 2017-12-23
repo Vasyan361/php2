@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Exceptions\DbExceptions;
+use App\Exceptions\DbException;
 
 class Db
 {
@@ -19,7 +19,7 @@ class Db
             $this->dbh = new \PDO($dsn, $config['user'], $config['password']);
 
         } catch (\PDOException $ex) {
-            throw new DbExceptions('Нет соединения с БД');
+            throw new DbException('Нет соединения с БД');
         }
 
     }
@@ -30,7 +30,7 @@ class Db
             $sth = $this->dbh->prepare($sql);
 
         } catch (\PDOException $ex) {
-            throw new DbExceptions('Ошибка в запросе');
+            throw new DbException('Ошибка в запросе');
         }
 
         $sth->execute($params);
@@ -43,7 +43,7 @@ class Db
             $sth = $this->dbh->prepare($query);
 
         } catch (\PDOException $ex) {
-            throw new DbExceptions('Ошибка в запросе');
+            throw new DbException('Ошибка в запросе');
         }
 
         return $sth->execute($params);

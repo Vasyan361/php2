@@ -42,6 +42,7 @@ class Admin
                     $article->fill($_POST);
                     $article->save();
                     header('Location: /Admin');
+                    exit();
 
                 } catch (ErrorsExceptions $errors){
                     $this->view->article = $article;
@@ -57,6 +58,7 @@ class Admin
                     $article->fill($_POST);
                     $article->save();
                     header('Location: /Admin');
+                    exit();
 
                 } catch (ErrorsExceptions $errors){
                     $this->view->article = $article;

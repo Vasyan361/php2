@@ -26,6 +26,7 @@ abstract class Controller
             $this->$method();
         } else {
             http_response_code(403);
+            die();
         }
 
     }
