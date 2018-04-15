@@ -7,11 +7,13 @@ class AdminDataTable
 {
     protected $model;
     protected $func;
+    protected $view;
 
     public function __construct($model, array $func)
     {
         $this->model = $model;
         $this->func = $func;
+        $this->view = new View();
     }
 
     public function render()
@@ -24,7 +26,8 @@ class AdminDataTable
             }
         }
 
-        return $cell;
+        $this->view->items = $cell;
+        $this->view->display(__DIR__ . '/../Admin/Templates/Default.php');
     }
 
 }

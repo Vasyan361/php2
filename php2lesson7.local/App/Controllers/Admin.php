@@ -26,8 +26,8 @@ class Admin extends Controller
                 }
             ]
         );
-        $this->view->items = $table->render();
-        $this->view->display(__DIR__ . '/../../Admin/Templates/Default.php');
+
+        $table->render();
     }
 
     protected function actionEdit()
